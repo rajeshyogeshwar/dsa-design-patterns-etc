@@ -5,6 +5,8 @@ Algorithm:
 2: Mark the current item as min.
 3: Iterate over the subarray [min to length of array].
 4: If the element is smaller than min, then swap.
+
+Time Complexity: O(n^2)
 """
 from typing import List
 

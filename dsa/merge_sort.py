@@ -3,6 +3,9 @@
 Algorithm:
 1: If length of array is greater than 1, partition the array at mid.
 2: Recursively call sort over the two halves created by step 1.
+
+Time Complexity: O(n log n)
+This is a divide and conquery algorithm and it always breaks the array into halves and it takes linear time to sort every half.
 """
 from typing import List
 
