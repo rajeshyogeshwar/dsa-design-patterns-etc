@@ -47,7 +47,7 @@ class BinarySearchTree:
     def print_preorder(self, node: BSTNode):
         """Display tree and it's content in preorder fashion."""
         if node is not None:
-            print(node.data)
+            print(node.data, end=" ")
             self.print_preorder(node=node.left)
             self.print_preorder(node=node.right)
 
@@ -56,7 +56,7 @@ class BinarySearchTree:
 
         if node is not None:
             self.print_inorder(node=node.left)
-            print(node.data)
+            print(node.data, end=" ")
             self.print_inorder(node=node.right)
 
     def print_postorder(self, node: BSTNode):
@@ -65,7 +65,7 @@ class BinarySearchTree:
         if node is not None:
             self.print_postorder(node=node.right)
             self.print_postorder(node=node.left)
-            print(node.data)
+            print(node.data, end=" ")
 
     def print_level_order(self):
         """Level order traversal."""
@@ -76,7 +76,7 @@ class BinarySearchTree:
 
         while len(queue) > 0:
             node_to_print = queue.pop(0)
-            print(node_to_print.data)
+            print(node_to_print.data, end=" ")
 
             if node_to_print.left is not None:
                 queue.append(node_to_print.left)
@@ -163,24 +163,33 @@ if __name__ == "__main__":
 
     print("Preorder Traversal")
     tree.print_preorder(node=tree.root)
+    print("\n")
 
     print("Inorder Traversal")
     tree.print_inorder(node=tree.root)
+    print("\n")
 
     print("Postorder Traversal")
     tree.print_postorder(node=tree.root)
+    print("\n")
 
     print("Level Order Traversal")
     tree.print_level_order()
+    print("\n")
 
     print("Searching 27")
     tree.search(data=27)
+    print("\n")
 
     print("Searching 99")
     tree.search(data=99)
+    print("\n")
 
     print("Deleting 31")
     tree.root = tree.delete(node=tree.root, data=31)
+    print("Deleted 31")
+    print("\n")
 
     print("Inorder Traversal")
     tree.print_inorder(node=tree.root)
+    print("\n")
