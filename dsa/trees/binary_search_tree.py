@@ -1,9 +1,5 @@
 """Binary Tree."""
 
-from hashlib import new
-from random import randint
-from typing import List
-
 
 class BSTNode:
     """Binary Search Tree Node."""
@@ -15,7 +11,8 @@ class BSTNode:
         self.right = None
 
     @property
-    def is_leaf(self):
+    def is_leaf(self) -> bool:
+        """Returns a bool indicating if node is leaf."""
         return self.left is None and self.right is None
 
     def __str__(self) -> str:
@@ -111,7 +108,7 @@ class BinarySearchTree:
 
         # Return None when either we send an empty tree or the given node is not present in the tree
         if node is None:
-            return node
+            return None
 
         if data > node.data:
             node.right = self.delete(node=node.right, data=data)
@@ -122,7 +119,6 @@ class BinarySearchTree:
         else:
             # Case:1 -> If the node to be deleted is leaf
             if node.is_leaf:
-                node = None
                 return None
 
             # Case:2 -> Node has right child

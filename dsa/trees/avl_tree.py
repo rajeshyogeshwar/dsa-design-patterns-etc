@@ -11,6 +11,11 @@ class AVLNode:
         self.right = None
         self.height = 1
 
+    @property
+    def is_leaf(self) -> bool:
+        """Returns a bool indicating if node is leaf."""
+        return self.left is None and self.right is None
+
     def __str__(self) -> str:
         """String representation of node data."""
         return str(self.data)
@@ -50,7 +55,58 @@ class AVLTree:
         elif data > node.data:
             node.right = self.insert(node=node.right, data=data)
 
+        return self.rebalance(node=node, data=data)
+
+    def delete(self, node: AVLNode, data: int):
+        """Delete the given node from the tree."""
+
+        # Return None when either we send an empty tree or the given node is not present in the tree
+        if node is None:
+            return None
+
+        if data > node.data:
+            node.right = self.delete(node=node.right, data=data)
+
+        elif data < node.data:
+            node.left = self.delete(node=node.left, data=data)
+
+        else:
+            # # Case:1 -> If the node to be deleted is leaf
+            # if node.is_leaf:
+            #     return None
+
+            # # Case:2 -> Node has right child
+            if node.left is None:
+                temp = node.right
+                node = None
+                return temp
+
+            # Case:3 -> Node has left child
+            elif node.right is None:
+                temp = node.left
+                node = None
+                return temp
+
+            # Case:4 -> Node has both left and right. Find min value in right subtree and replace node value with the min value.
+            else:
+
+                temp = node.right
+
+                while temp.left is not None:
+                    temp = temp.left
+
+                node.data = temp.data
+                node.right = self.delete(node=node.right, data=temp.data)
+
+        return self.rebalance(node=node, data=data)
+
+    def rebalance(self, node: AVLNode, data: int) -> AVLNode:
+        """Rebalance the tree post insert/delete operation."""
+
+        # Update the height of the node
         self.update_height(node=node)
+
+        # Get the balance factor
         balance_factor = node.balance_factor
 
         # Heavier on the left side
@@ -134,6 +190,12 @@ if __name__ == "__main__":
     for item in array:
         root = tree.insert(node=root, data=item)
 
+    print("Level Order Traversal")
+    tree.print_level_order(node=root)
+    print("\n")
+
+    root = tree.delete(node=root, data=40)
+    print("After Deleting 40")
     print("Level Order Traversal")
     tree.print_level_order(node=root)
     print("\n")
