@@ -1,4 +1,4 @@
-"""Sieve Of Eratosthenese.
+"""Sieve Of Eratosthenes.
 
 It is an ancient algorithm to find all the prime numbers upto a given limit. It does so by marking multiples of the each prime number as composite starting with 2. The sequence is generated with from prime with distance between next number equal to the prime number itself. Once all the composites are marked the remaining numbers are primes.
 """
