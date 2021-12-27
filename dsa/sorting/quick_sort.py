@@ -66,5 +66,5 @@ if __name__ == "__main__":
         695,
         213,
     ]
-    sorted_array = sort(array=array)
+    sorted_array = sort(array=array, low=0, high=len(array) - 1)
     print(sorted_array)
